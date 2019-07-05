@@ -1,0 +1,51 @@
+{
+  "name": "Almoceitor",
+  "short_name": "Almoceitor",
+  "theme_color": "#1E7E61",
+  "background_color": "#E5E5E5",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_9,w_72/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_12,w_96/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_14,w_128/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_14,w_144/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_14,w_152/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_16,w_192/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_40,w_384/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/czare/image/upload/c_scale,r_60,w_512/v1562316850/itau/icon-almoceitor.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
