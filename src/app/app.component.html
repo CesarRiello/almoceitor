@@ -1,23 +1,24 @@
-<mat-sidenav-container class="example-container" >  
-  <mat-sidenav #sidenav >
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav>
     <nav>
       <ul>
         <li>
-            <a routerLink="/">home</a>
+          <a routerLink="/">home</a>
         </li>
         <li>
-            <a routerLink="restaurantes">restaurantes</a>
+          <a routerLink="restaurantes">restaurantes</a>
         </li>
       </ul>
     </nav>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="secondary" class="example-toolbar">
-      <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-      <h1 class="example-app-name">Almoceitor</h1>
+    <mat-toolbar color="primay" class="main-toolbar mat-primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="app-name">Almoceitor</h1>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-
 </mat-sidenav-container>
