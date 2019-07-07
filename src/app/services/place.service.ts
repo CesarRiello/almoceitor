@@ -29,7 +29,7 @@ export class PlaceService {
   }
 
   filterType(type: string) {
-    this.places = this.order(placesList).filter(_place => _place.type == type);
+    this.places = this.order(placesList).filter(_place => type === '' || _place.type === type);
     this.placesUpdated.next();
   }
 

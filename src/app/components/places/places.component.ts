@@ -15,28 +15,22 @@ export class PlacesComponent implements OnInit {
   blacklist = [];
   favorites = [];
   placeSubscription: Subscription;
-  blacklistSubscription: Subscription;
   favoriteSubscription: Subscription;
 
   constructor(
     public placeService: PlaceService,
-    public blacklistService: BlacklistService,
     public favoriteService: FavoriteService
     ) { }
 
   ngOnInit() {
     this.places = this.placeService.get()
-    this.blacklist = this.blacklistService.get()
     this.favorites = this.favoriteService.get()
     this.placesTypes = this.placeService.getTypes(this.places)
 
     this.placeSubscription = this.placeService.placesUpdated.subscribe(()=>{
       this.places = this.placeService.get()
-      // this.placesTypes = this.placeService.getTypes(this.places)
     })
-    this.blacklistSubscription = this.blacklistService.blacklistUpdated.subscribe(()=>{
-      this.blacklist = this.blacklistService.get()
-    })
+
     this.favoriteSubscription = this.favoriteService.favoriteUpdated.subscribe(()=>{
       this.favorites = this.favoriteService.get()
     })
@@ -45,34 +39,20 @@ export class PlacesComponent implements OnInit {
 
   OnDestroy(){
     this.placeSubscription.unsubscribe()
-    this.placeSubscription.unsubscribe()
-    this.placeSubscription.unsubscribe()
+    this.favoriteSubscription.unsubscribe()
   }
 
   filterByType(type:string) {
-    console.log('type', type);
-    
     this.placeService.filterType(type)
   }
 
   toogleFavorite(place){
     if (this.favorites.includes(place.id)) {
-      console.log('remove', place);
       this.favoriteService.remove(place.id)
     } else {
-      console.log('add', place);
       this.favoriteService.add(place.id)
     }
   }
 
-  toogleDisable(place){
-    if (this.blacklist.includes(place.id)) {
-      console.log('remove', place);
-      this.blacklistService.remove(place.id)
-    } else {
-      console.log('add', place);
-      this.blacklistService.add(place.id)
-    }
-  }  
 
 }

@@ -15,9 +15,6 @@
     <p class="place-type">{{place.type}}</p>
   </a>
   <div class="place-actions" >
-    <button mat-icon-button (click)="toogleDisable(place)" class="place-icon hidden">
-      <mat-icon>{{blacklist.includes(place.id) ? 'label': 'label_off'}}</mat-icon>
-    </button>
     <button mat-icon-button (click)="toogleFavorite(place)" class="place-icon">
       <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
     </button>
