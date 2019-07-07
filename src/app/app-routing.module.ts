@@ -8,7 +8,7 @@ import { PlaceDetailComponent } from './components/place-detail/place-detail.com
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'restaurantes', component: PlacesComponent },
-  { path: 'restaurante/:slug-name', component: PlaceDetailComponent },
+  { path: 'restaurante/:slug', component: PlaceDetailComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

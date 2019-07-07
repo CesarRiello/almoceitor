@@ -33,6 +33,10 @@ export class PlaceService {
     this.placesUpdated.next();
   }
 
+  getBySlug(slug: string) {
+    return placesList.find(_place => _place.slug === slug) || {};
+  }
+
   order(places) {
     return places.sort((a, b) => {
       if (a.name > b.name) {

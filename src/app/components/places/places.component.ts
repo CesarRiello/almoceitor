@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../../services/place.service'
-import { BlacklistService } from '../../services/blacklist.service'
 import { FavoriteService } from '../../services/favorite.service'
 import { Subscription } from 'rxjs';
 
@@ -24,17 +23,16 @@ export class PlacesComponent implements OnInit {
 
   ngOnInit() {
     this.places = this.placeService.get()
-    this.favorites = this.favoriteService.get()
-    this.placesTypes = this.placeService.getTypes(this.places)
-
     this.placeSubscription = this.placeService.placesUpdated.subscribe(()=>{
       this.places = this.placeService.get()
     })
 
+    this.favorites = this.favoriteService.get()
     this.favoriteSubscription = this.favoriteService.favoriteUpdated.subscribe(()=>{
       this.favorites = this.favoriteService.get()
     })
-
+    
+    this.placesTypes = this.placeService.getTypes(this.places)
   }
 
   OnDestroy(){
@@ -53,6 +51,5 @@ export class PlacesComponent implements OnInit {
       this.favoriteService.add(place.id)
     }
   }
-
 
 }
