@@ -1,19 +1,24 @@
 <h1 class="main-title">Lista de restaurantes</h1>
 
-<mat-card class="place-item">
-    <a mat-button routerLink="/restaurante/xxx">
-        Nome - Tipo
-    </a>
+<mat-card class="place-item" [ngClass]="{'place-disable': blacklist.includes(place.id)}"  *ngFor="let place of places" >
+  <a mat-button routerLink="/restaurante/xxx">
+    <h2 class="place-name">{{place.name}}</h2>
+    <p class="place-type">{{place.type}}</p>
+  </a>
+  <div class="place-actions" >
+    <button mat-icon-button (click)="toogleDisable(place)" class="place-icon hidden">
+      <mat-icon>{{blacklist.includes(place.id) ? 'label': 'label_off'}}</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toogleFavorite(place)" class="place-icon">
+      <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
+    </button>
+  </div>
 </mat-card>
 
-<mat-card class="place-item">
-    <a mat-button routerLink="/restaurante/yyy">
-        Nome - Tipo
-    </a>
-</mat-card>
+<pre>
+  {{favorites | json}}
+</pre>
+<pre>
+  {{blacklist | json}}
 
-<mat-card class="place-item">
-    <a mat-button routerLink="/restaurante/zzz">
-        Nome - Tipo
-    </a>
-</mat-card>
+</pre>

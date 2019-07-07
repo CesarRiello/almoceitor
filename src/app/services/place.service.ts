@@ -28,8 +28,8 @@ export class PlaceService {
     return [...this.places]
   }
 
-  getWithFilter(type:string){
-    return this.places.filter(_place => _place.type == type)
+  filterType(type:string){
+    this.places = this.places.filter(_place => _place.type == type)
   }
 
 }
