@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlacesComponent implements OnInit {
   places = [];
+  placesTypes = [];
   blacklist = [];
   favorites = [];
   placeSubscription: Subscription;
@@ -27,9 +28,11 @@ export class PlacesComponent implements OnInit {
     this.places = this.placeService.get()
     this.blacklist = this.blacklistService.get()
     this.favorites = this.favoriteService.get()
+    this.placesTypes = this.placeService.getTypes(this.places)
 
     this.placeSubscription = this.placeService.placesUpdated.subscribe(()=>{
       this.places = this.placeService.get()
+      // this.placesTypes = this.placeService.getTypes(this.places)
     })
     this.blacklistSubscription = this.blacklistService.blacklistUpdated.subscribe(()=>{
       this.blacklist = this.blacklistService.get()
@@ -37,13 +40,18 @@ export class PlacesComponent implements OnInit {
     this.favoriteSubscription = this.favoriteService.favoriteUpdated.subscribe(()=>{
       this.favorites = this.favoriteService.get()
     })
+
   }
 
   OnDestroy(){
     this.placeSubscription.unsubscribe()
+    this.placeSubscription.unsubscribe()
+    this.placeSubscription.unsubscribe()
   }
 
-  filterByType(type:string){
+  filterByType(type:string) {
+    console.log('type', type);
+    
     this.placeService.filterType(type)
   }
 

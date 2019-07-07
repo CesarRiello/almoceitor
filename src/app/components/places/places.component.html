@@ -1,7 +1,16 @@
-<h1 class="main-title">Lista de restaurantes</h1>
+<div class="places-forehead">
+  <h1 class="main-title">Lista de restaurantes</h1>
+
+  <mat-form-field>
+    <select matNativeControl (change)="filterByType($event.target.value)">
+      <option value="">todos</option>
+      <option value="{{placeType}}" *ngFor="let placeType of placesTypes">{{placeType}}</option>
+    </select>
+  </mat-form-field>
+</div>
 
 <mat-card class="place-item" [ngClass]="{'place-disable': blacklist.includes(place.id)}"  *ngFor="let place of places" >
-  <a mat-button routerLink="/restaurante/xxx">
+  <a mat-button routerLink="/restaurante/{{place.slug}}" class="place-btn">
     <h2 class="place-name">{{place.name}}</h2>
     <p class="place-type">{{place.type}}</p>
   </a>
@@ -14,11 +23,3 @@
     </button>
   </div>
 </mat-card>
-
-<pre>
-  {{favorites | json}}
-</pre>
-<pre>
-  {{blacklist | json}}
-
-</pre>
