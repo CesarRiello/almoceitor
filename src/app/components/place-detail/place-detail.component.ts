@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlaceDetailComponent implements OnInit {
   slug = '';
-  place = {};
+  place = {name:'', type:'', id:''};
   favorites = [];
   placeSubscription: Subscription;
   favoriteSubscription: Subscription;

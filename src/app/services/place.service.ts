@@ -34,7 +34,7 @@ export class PlaceService {
   }
 
   getBySlug(slug: string) {
-    return placesList.find(_place => _place.slug === slug) || {};
+    return placesList.find(_place => _place.slug === slug) || {name:'', type:'', id:''};
   }
 
   order(places) {
