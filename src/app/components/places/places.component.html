@@ -1,22 +1,44 @@
-<div class="places-forehead">
-  <h1 class="main-title">Lista de restaurantes</h1>
+<div class="places-wrap">
 
-  <mat-form-field>
-    <select matNativeControl (change)="filterByType($event.target.value)">
-      <option value="">todos</option>
-      <option value="{{placeType}}" *ngFor="let placeType of placesTypes">{{placeType}}</option>
-    </select>
-  </mat-form-field>
-</div>
+  <div class="places-search">
+      <form #f="ngForm">
+        <mat-form-field>
+          <input matInput placeholder="Nome do restaurante" ngModel name="searchParam">
+          <button mat-icon-button matSuffix (click)="search(f)" [attr.aria-label]="'buscar'" [attr.aria-pressed]="hide">
+            <mat-icon color="accent">search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
 
-<mat-card class="place-item" [ngClass]="{'place-disable': blacklist.includes(place.id)}"  *ngFor="let place of places" >
-  <a mat-button routerLink="/restaurante/{{place.slug}}" class="place-btn">
-    <h2 class="place-name">{{place.name}}</h2>
-    <p class="place-type">{{place.type}}</p>
-  </a>
-  <div class="place-actions" >
-    <button mat-icon-button (click)="toogleFavorite(place)" class="place-icon">
-      <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
-    </button>
   </div>
-</mat-card>
+
+  <div class="places-forehead">
+    <h1 class="main-title">Lista <span>de restaurantes</span></h1>
+
+    <mat-form-field>
+      <select matNativeControl (change)="filterByType($event.target.value)">
+        <option value="">todos</option>
+        <option value="{{placeType}}" *ngFor="let placeType of placesTypes">{{placeType}}</option>
+      </select>
+    </mat-form-field>
+  </div>
+
+  <mat-card class="place-item" [ngClass]="{'place-disable': blacklist.includes(place.id)}"  *ngFor="let place of places" >
+    <a mat-button routerLink="/restaurante/{{place.slug}}" class="place-btn">
+      <h2 class="place-name">{{place.name}}</h2>
+      <p class="place-type">{{place.type}}</p>
+    </a>
+    <div class="place-actions" >
+      <button mat-icon-button (click)="toogleFavorite(place)" class="place-icon">
+        <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+
+  <div class="places-action">
+      <button mat-raised-button color="accent" (click)="randomPlace()" >
+        Sugerir um restaurante
+        <mat-icon>grade</mat-icon>
+      </button>
+  </div>
+</div>

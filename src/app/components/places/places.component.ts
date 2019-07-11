@@ -13,6 +13,7 @@ export class PlacesComponent implements OnInit {
   placesTypes = [];
   blacklist = [];
   favorites = [];
+  searchParam = 'ok';
   placeSubscription: Subscription;
   favoriteSubscription: Subscription;
 
@@ -31,7 +32,7 @@ export class PlacesComponent implements OnInit {
     this.favoriteSubscription = this.favoriteService.favoriteUpdated.subscribe(()=>{
       this.favorites = this.favoriteService.get()
     })
-    
+
     this.placesTypes = this.placeService.getTypes(this.places)
   }
 
@@ -50,6 +51,14 @@ export class PlacesComponent implements OnInit {
     } else {
       this.favoriteService.add(place.id)
     }
+  }
+
+  randomPlace(){
+    alert(this.places[Math.ceil(Math.random() * this.places.length)].name)
+  }
+
+  search(form){
+    this.placeService.filterName(form.value.searchParam)
   }
 
 }
