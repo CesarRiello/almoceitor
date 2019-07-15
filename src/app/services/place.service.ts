@@ -1,15 +1,26 @@
 import { Subject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { placesList } from "../models/placesList";
+import { Subscription } from 'rxjs';
+import { BlacklistService } from './blacklist.service';
 
 @Injectable({
   providedIn: "root"
 })
 export class PlaceService {
   places;
+  blacklist = [];
+  blacklistSubscription: Subscription;
 
-  constructor() {
+  constructor(
+    public blacklistService: BlacklistService,
+  ) {
     this.places = this.order(placesList);
+
+    this.blacklist = this.blacklistService.get()
+    this.blacklistSubscription = this.blacklistService.blacklistUpdated.subscribe(()=>{
+      this.blacklist = this.blacklistService.get()
+    })
   }
 
   placesUpdated = new Subject();
@@ -25,21 +36,27 @@ export class PlaceService {
   }
 
   get() {
-    return [...this.places];
+    return this.filterBlacklist([...this.places], this.blacklist);
   }
 
-  filterType(type: string) {
-    this.places = this.order(placesList).filter(_place => type === '' || _place.type === type);
+  filterType(modality: string) {
+    this.places = this.filterBlacklist(
+      this.order(placesList).filter(_place => modality === '' || _place.modality === modality),
+      this.blacklist
+    );
     this.placesUpdated.next();
   }
 
   filterName(name: string) {
-    this.places = this.order(placesList).filter(_place => name === '' || _place.name.includes(name));
+    this.places = this.filterBlacklist(
+      this.order(placesList).filter(_place => name === '' || _place.name.includes(name)),
+      this.blacklist
+    );
     this.placesUpdated.next();
   }
 
   getBySlug(slug: string) {
-    return placesList.find(_place => _place.slug === slug) || {name:'', type:'', id:''};
+    return placesList.find(_place => _place.slug === slug) || {name:'', modality:'', id:''};
   }
 
   order(places) {
@@ -54,12 +71,17 @@ export class PlaceService {
     });
   }
 
-  getTypes(places) {
+  getModality(places) {
     return (places || [])
-      .map(_place => _place.type)
+      .map(_place => _place.modality)
       .reduce((uniqueTypes, currentType) => {
         if (typeof(uniqueTypes) === 'string') return [uniqueTypes]
         return uniqueTypes.includes(currentType) ? uniqueTypes : [...uniqueTypes, currentType]
       })
+  }
+
+  filterBlacklist(places, blacklist) {
+    return (places || [])
+      .filter(_place => !(blacklist || []).includes(_place.id))
   }
 }

@@ -1,16 +1,17 @@
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './localstorage.service';
+const key = 'almoceitorfavorites';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
   favorite = [];
-  favoriteStorage = new LocalStorageService('almoceitorfavorites');
+  favoriteStorage = new LocalStorageService(key);
 
   constructor(){
-    this.favorite = this.favoriteStorage.getList('almoceitorfavorites')
+    this.favorite = this.favoriteStorage.getList(key)
   }
 
   favoriteUpdated = new Subject;
@@ -20,10 +21,10 @@ export class FavoriteService {
     this.favoriteStorage.updateList(this.favorite)
     this.favoriteUpdated.next()
   }
-  
+
   remove(favorite){
     this.favorite = this.favorite.filter(_favorite => _favorite !== favorite)
-    this.favoriteStorage.updateList(this.favorite, 'almoceitorfavorites')
+    this.favoriteStorage.updateList(this.favorite, key)
     this.favoriteUpdated.next()
   }
 
