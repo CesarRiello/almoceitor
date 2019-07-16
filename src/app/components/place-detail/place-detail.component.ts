@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlaceDetailComponent implements OnInit {
   slug = '';
-  place = {name:'', modality:'', id:''};
+  place = {name:'', modality:'', id:'', slug:''};
   favorites = [];
   blacklist = [];
   visited = [];
@@ -33,7 +33,6 @@ export class PlaceDetailComponent implements OnInit {
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get("slug");
     this.place = this.placeService.getBySlug(this.slug);
-    console.log('www', this.slug, this.place);
 
     this.favorites = this.favoriteService.get()
     this.favoriteSubscription = this.favoriteService.favoriteUpdated.subscribe(()=>{

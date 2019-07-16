@@ -1,6 +1,6 @@
 export class Place {
   id: string;
   name: string;
-  slugName: string;
+  slug: string;
   modality: string;
 }

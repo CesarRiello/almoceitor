@@ -2,7 +2,7 @@
   <mat-card-header>
       <div mat-card-avatar class="place-avatar"><mat-icon>local_dining</mat-icon></div>
       <mat-card-title>{{place.name}}</mat-card-title>
-      <mat-card-subtitle>{{place.modality}}</mat-card-subtitle>
+      <mat-card-subtitle>{{place.modality || ''}}</mat-card-subtitle>
   </mat-card-header>
 
   <picture>
@@ -10,12 +10,6 @@
     <source media="(min-width: 800px)" srcset="https://res.cloudinary.com/czare/image/upload/f_auto/v1563149325/almoceitor/indisponivel.png">
     <img src="https://res.cloudinary.com/czare/image/upload/f_auto/v1563149325/almoceitor/indisponivel.png" alt="Imagem não disponível" />
   </picture>
-
-  <mat-card-content>
-      <p>
-        {{place.description}}
-      </p>
-  </mat-card-content>
 
   <div class="btn-block-container">
     <button mat-stroked-button (click)="toogleFavorite(place)" class="place-icon">
