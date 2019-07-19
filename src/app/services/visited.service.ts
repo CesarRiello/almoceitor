@@ -28,6 +28,12 @@ export class VisitedService {
     this.visitedUpdated.next()
   }
 
+  clean(){
+    this.visited = []
+    this.visitedStorage.updateList(this.visited, key)
+    this.visitedUpdated.next()
+  }
+
   get(){
     return [...this.visited]
   }

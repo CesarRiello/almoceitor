@@ -28,6 +28,12 @@ export class BlacklistService {
     this.blacklistUpdated.next()
   }
 
+  clean(){
+    this.blacklist = []
+    this.blacklistStorage.updateList(this.blacklist, key)
+    this.blacklistUpdated.next()
+  }
+
   get(){
     return [...this.blacklist]
   }

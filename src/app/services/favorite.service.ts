@@ -28,6 +28,12 @@ export class FavoriteService {
     this.favoriteUpdated.next()
   }
 
+  clean(){
+    this.favorite = []
+    this.favoriteStorage.updateList(this.favorite, key)
+    this.favoriteUpdated.next()
+  }
+
   get(){
     return [...this.favorite]
   }

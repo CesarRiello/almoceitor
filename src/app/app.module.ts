@@ -13,8 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
+import { HeaderComponent } from './components/navigation/header/header.component';
+import { ConfigComponent } from './components/config/config.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HeaderComponent } from './navigation/header/header.component';
     WelcomeComponent,
     NotFoundComponent,
     SidenavListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,

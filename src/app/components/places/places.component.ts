@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PlaceService } from '../../services/place.service'
 import { FavoriteService } from '../../services/favorite.service'
 import { BlacklistService } from '../../services/blacklist.service'
-import { Subscription } from 'rxjs';
 import { VisitedService } from 'src/app/services/visited.service';
 
 @Component({

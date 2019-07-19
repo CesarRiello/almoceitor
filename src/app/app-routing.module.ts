@@ -4,11 +4,13 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { PlacesComponent } from './components/places/places.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PlaceDetailComponent } from './components/place-detail/place-detail.component';
+import { ConfigComponent } from './components/config/config.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'restaurantes', component: PlacesComponent },
   { path: 'restaurante/:slug', component: PlaceDetailComponent },
+  { path: 'preferencias', component: ConfigComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
