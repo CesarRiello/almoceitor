@@ -12,19 +12,19 @@
   </picture>
 
   <div class="btn-block-container">
-    <button mat-stroked-button (click)="toogleFavorite(place)" class="place-icon">
-      <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
-      {{favorites.includes(place.id) ? 'Remover dos ': 'Adicionar aos '}} favoritos
+    <button mat-stroked-button (click)="toggleConfig('favorites', place)" class="place-icon">
+      <mat-icon>{{config.favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
+      {{config.favorites.includes(place.id) ? 'Remover dos ': 'Adicionar aos '}} favoritos
     </button>
 
-    <button mat-stroked-button (click)="toogleBlacklist(place)" class="place-icon">
-      <mat-icon>{{blacklist.includes(place.id) ? 'label_off': 'label_outline'}}</mat-icon>
-      {{blacklist.includes(place.id) ? 'Mostar na ': 'Ocultar da '}} lista
+    <button mat-stroked-button (click)="toggleConfig('blacklist', place)" class="place-icon">
+      <mat-icon>{{config.blacklist.includes(place.id) ? 'label_off': 'label_outline'}}</mat-icon>
+      {{config.blacklist.includes(place.id) ? 'Mostar na ': 'Ocultar da '}} lista
     </button>
 
-    <button mat-stroked-button (click)="toogleVisited(place)" class="place-icon">
-      <mat-icon>{{visited.includes(place.id) ? 'bookmark': 'bookmark_border'}}</mat-icon>
-      {{visited.includes(place.id) ? 'Desmarcar ': 'Marcar '}} como visitado
+    <button mat-stroked-button (click)="toggleConfig('visited', place)" class="place-icon">
+      <mat-icon>{{config.visited.includes(place.id) ? 'bookmark': 'bookmark_border'}}</mat-icon>
+      {{config.visited.includes(place.id) ? 'Desmarcar ': 'Marcar '}} como visitado
     </button>
 
   </div>

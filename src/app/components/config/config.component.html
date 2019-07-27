@@ -3,18 +3,18 @@
     <h1 class="main-title">Preferencias</h1>
 
     <p>
-      <strong>Visitados:</strong> {{ visited.length }}
-      <button mat-button (click)="cleanVisited()">Limpar</button>
+      <strong>Visitados:</strong> {{ config.visited.length }}
+      <button mat-button (click)="clean('visited')">Limpar</button>
     </p>
 
     <p>
-      <strong> Favoritos: </strong> {{ favorites.length }}
-      <button mat-button (click)="cleanFavorites()">Limpar</button>
+      <strong> Favoritos: </strong> {{ config.favorites.length }}
+      <button mat-button (click)="clean('favorites')">Limpar</button>
     </p>
 
     <p>
-      <strong> Removidos: </strong> {{ blacklist.length }}
-      <button mat-button (click)="cleanBlacklist()">Limpar</button>
+      <strong> Removidos: </strong> {{ config.blacklist.length }}
+      <button mat-button (click)="clean('blacklist')">Limpar</button>
     </p>
   </div>
 </div>

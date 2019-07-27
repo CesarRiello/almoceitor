@@ -11,7 +11,7 @@
     </mat-form-field>
   </div>
 
-  <mat-card class="place-item" [ngClass]="{'place-disable': blacklist.includes(place.id)}"  *ngFor="let place of places" >
+  <mat-card class="place-item" [ngClass]="{'place-disable': config.blacklist.includes(place.id)}"  *ngFor="let place of places" >
     <picture class="place-pic">
       <source media="(max-width: 400px)" srcset="https://res.cloudinary.com/czare/image/upload/c_crop,g_north,h_140,w_150/v1563149325/almoceitor/indisponivel.png">
       <source media="(min-width: 800px)" srcset="https://res.cloudinary.com/czare/image/upload/c_crop,g_north,h_140,w_150/v1563149325/almoceitor/indisponivel.png">
@@ -23,12 +23,12 @@
       <p class="place-type">{{place.modality}}</p>
     </a>
     <div class="place-actions" >
-      <button mat-icon-button (click)="toogleVisited(place)" class="place-icon">
-        <mat-icon>{{visited.includes(place.id) ? 'bookmark': 'bookmark_border'}}</mat-icon>
+      <button mat-icon-button (click)="toggleConfig('visited', place)" class="place-icon">
+        <mat-icon>{{config.visited.includes(place.id) ? 'bookmark': 'bookmark_border'}}</mat-icon>
       </button>
 
-      <button mat-icon-button (click)="toogleFavorite(place)" class="place-icon">
-        <mat-icon>{{favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
+      <button mat-icon-button (click)="toggleConfig('favorites', place)" class="place-icon">
+        <mat-icon>{{config.favorites.includes(place.id) ? 'favorite': 'favorite_border'}}</mat-icon>
       </button>
     </div>
   </mat-card>
