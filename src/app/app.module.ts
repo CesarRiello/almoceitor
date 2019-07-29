@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
 import { HeaderComponent } from './components/navigation/header/header.component';
 import { ConfigComponent } from './components/config/config.component';
+import { SugestionComponent } from './components/sugestion/sugestion.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ConfigComponent } from './components/config/config.component';
     NotFoundComponent,
     SidenavListComponent,
     HeaderComponent,
-    ConfigComponent
+    ConfigComponent,
+    SugestionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { ConfigComponent } from './components/config/config.component';
     FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SugestionComponent]
 })
 export class AppModule { }

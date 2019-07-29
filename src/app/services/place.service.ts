@@ -2,24 +2,24 @@ import { Subject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { placesList } from "../models/placesList";
 import { Subscription } from 'rxjs';
-import { BlacklistService } from './blacklist.service';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: "root"
 })
 export class PlaceService {
   places;
-  blacklist = [];
-  blacklistSubscription: Subscription;
+  config = {};
+  configSubscription: Subscription;
 
   constructor(
-    public blacklistService: BlacklistService,
+    public configService: ConfigService,
   ) {
     this.places = this.order(placesList);
 
-    this.blacklist = this.blacklistService.get()
-    this.blacklistSubscription = this.blacklistService.blacklistUpdated.subscribe(()=>{
-      this.blacklist = this.blacklistService.get()
+    this.config = this.configService.get()
+    this.configSubscription = this.configService.configUpdated.subscribe(()=>{
+      this.config = this.configService.get()
     })
   }
 
@@ -36,13 +36,21 @@ export class PlaceService {
   }
 
   get() {
-    return this.filterBlacklist([...this.places], this.blacklist);
+    return this.filterBlacklist([...this.places], this.config['blacklist'] || []);
   }
 
   filterType(modality: string) {
     this.places = this.filterBlacklist(
       this.order(placesList).filter(_place => modality === '' || _place.modality === modality),
-      this.blacklist
+      this.config['blacklist'] || []
+    );
+    this.placesUpdated.next();
+  }
+
+  filterFavorires() {
+    this.places = this.filterFavorites(
+      this.order(placesList),
+      this.config['favorites'] || []
     );
     this.placesUpdated.next();
   }
@@ -50,7 +58,7 @@ export class PlaceService {
   filterName(name: string) {
     this.places = this.filterBlacklist(
       this.order(placesList).filter(_place => name === '' || _place.name.includes(name)),
-      this.blacklist
+      this.config['blacklist'] || []
     );
     this.placesUpdated.next();
   }
@@ -83,5 +91,10 @@ export class PlaceService {
   filterBlacklist(places, blacklist) {
     return (places || [])
       .filter(_place => !(blacklist || []).includes(_place.id))
+  }
+
+  filterFavorites(places, favorites) {
+    return (places || [])
+      .filter(_place => (favorites || []).includes(_place.id))
   }
 }

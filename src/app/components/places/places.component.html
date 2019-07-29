@@ -34,9 +34,34 @@
   </mat-card>
 
   <div class="places-action">
-      <button mat-raised-button color="accent" (click)="randomPlace()" >
-        Sugerir um restaurante
-        <mat-icon>settings_backup_restore</mat-icon>
-      </button>
+
+    <div class="places-action-col">
+      <a mat-button color="accent" routerLink="/" >
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+    </div>
+
+    <div class="places-action-col">
+      <a mat-button color="accent" (click)="randomPlace()" >
+        <mat-icon>explore</mat-icon>
+        Sugerir
+      </a>
+    </div>
+
+    <div class="places-action-col">
+      <a mat-button color="{{showJustFavorites ? 'primary' : 'accent'}}" (click)="toggleFavorites()" >
+        <mat-icon>favorite</mat-icon>
+        Favoritos
+      </a>
+    </div>
+
+    <div class="places-action-col">
+      <a mat-button color="accent" routerLink="/preferencias" >
+        <mat-icon>settings</mat-icon>
+        Preferencias
+      </a>
+    </div>
+
   </div>
 </div>

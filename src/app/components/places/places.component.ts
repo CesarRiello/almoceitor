@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PlaceService } from '../../services/place.service'
 import { ConfigService } from '../../services/config.service'
 import { MatDialog } from '@angular/material'
+import { SugestionComponent } from '../sugestion/sugestion.component';
 
 @Component({
   selector: 'app-places',
@@ -13,6 +14,7 @@ import { MatDialog } from '@angular/material'
 export class PlacesComponent implements OnInit {
   places = [];
   placesTypes = [];
+  showJustFavorites = false;
   config = {};
 
   searchParam = 'ok';
@@ -43,6 +45,15 @@ export class PlacesComponent implements OnInit {
 
   filterByType(type:string) {
     this.placeService.filterType(type)
+  }
+
+  toggleFavorites() {
+    this.showJustFavorites = !this.showJustFavorites
+    if (this.showJustFavorites) {
+      this.placeService.filterFavorires()
+    } else {
+      this.places = this.placeService.get()
+    }
   }
 
   randomPlace(){
