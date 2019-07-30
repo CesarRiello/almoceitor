@@ -3,7 +3,11 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <h1 class="app-name">Almoceitor</h1>
+  <h1 class="app-name">
+      <a (click)="onClose()" routerLink="/">
+        Almoceitor
+      </a>
+  </h1>
 
   <a mat-icon-button routerLink="/restaurantes">
     <mat-icon *ngIf="back">arrow_back</mat-icon>

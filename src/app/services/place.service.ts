@@ -47,11 +47,19 @@ export class PlaceService {
     this.placesUpdated.next();
   }
 
-  filterFavorires() {
-    this.places = this.filterFavorites(
+  filterFavorites(hasfilter) {
+    this.places = hasfilter ? this._filterFavorites(
       this.order(placesList),
       this.config['favorites'] || []
-    );
+    ) : this.order(placesList);
+    this.placesUpdated.next();
+  }
+
+  filterVisited(hasfilter) {
+    this.places = hasfilter ? this._filterVisited(
+      this.order(placesList),
+      this.config['visited'] || []
+    ) : this.order(placesList);
     this.placesUpdated.next();
   }
 
@@ -93,8 +101,13 @@ export class PlaceService {
       .filter(_place => !(blacklist || []).includes(_place.id))
   }
 
-  filterFavorites(places, favorites) {
+  _filterFavorites(places, favorites) {
     return (places || [])
       .filter(_place => (favorites || []).includes(_place.id))
+  }
+
+  _filterVisited(places, visited) {
+    return (places || [])
+      .filter(_place => !(visited || []).includes(_place.id))
   }
 }

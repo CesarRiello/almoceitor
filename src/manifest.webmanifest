@@ -1,7 +1,7 @@
 {
   "name": "Almoceitor",
   "short_name": "Almoceitor",
-  "theme_color": "#007766",
+  "theme_color": "#f7554a",
   "background_color": "#E5E5E5",
   "display": "standalone",
   "scope": "/",

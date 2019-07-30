@@ -9,8 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./config.component.styl']
 })
 export class ConfigComponent implements OnInit {
-  config = {};
-
+  config = {favorites:[], blacklist:[], visited:[]};
   configSubscription: Subscription;
 
   constructor(
@@ -18,9 +17,9 @@ export class ConfigComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.config = this.configService.get()
+    this.config = {...this.config, ...this.configService.get()}
     this.configSubscription = this.configService.configUpdated.subscribe(()=>{
-      this.config = this.configService.get()
+      this.config = {...this.config, ...this.configService.get()}
     })
   }
 

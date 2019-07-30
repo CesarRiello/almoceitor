@@ -15,6 +15,7 @@ export class PlacesComponent implements OnInit {
   places = [];
   placesTypes = [];
   showJustFavorites = false;
+  showJustUnvisited = false;
   config = {};
 
   searchParam = 'ok';
@@ -49,11 +50,12 @@ export class PlacesComponent implements OnInit {
 
   toggleFavorites() {
     this.showJustFavorites = !this.showJustFavorites
-    if (this.showJustFavorites) {
-      this.placeService.filterFavorires()
-    } else {
-      this.places = this.placeService.get()
-    }
+    this.placeService.filterFavorites(this.showJustFavorites)
+  }
+
+  toggleVisited() {
+    this.showJustUnvisited = !this.showJustUnvisited
+    this.placeService.filterVisited(this.showJustUnvisited)
   }
 
   randomPlace(){

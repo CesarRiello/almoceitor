@@ -36,13 +36,6 @@
   <div class="places-action">
 
     <div class="places-action-col">
-      <a mat-button color="accent" routerLink="/" >
-        <mat-icon>home</mat-icon>
-        Home
-      </a>
-    </div>
-
-    <div class="places-action-col">
       <a mat-button color="accent" (click)="randomPlace()" >
         <mat-icon>explore</mat-icon>
         Sugerir
@@ -53,6 +46,13 @@
       <a mat-button color="{{showJustFavorites ? 'primary' : 'accent'}}" (click)="toggleFavorites()" >
         <mat-icon>favorite</mat-icon>
         Favoritos
+      </a>
+    </div>
+
+    <div class="places-action-col">
+      <a mat-button color="{{showJustUnvisited ? 'primary' : 'accent'}}" (click)="toggleVisited()" >
+        <mat-icon>bookmark_border</mat-icon>
+        Não visitados
       </a>
     </div>
 

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class PlaceDetailComponent implements OnInit {
   slug = '';
   place = {name:'', modality:'', id:'', slug:''};
-  config = {};
+  config = {favorites:[], blacklist:[], visited:[]};
   placeSubscription: Subscription;
   configSubscription: Subscription;
 
@@ -26,9 +26,9 @@ export class PlaceDetailComponent implements OnInit {
     this.slug = this.route.snapshot.paramMap.get("slug");
     this.place = this.placeService.getBySlug(this.slug);
 
-    this.config = this.configService.get()
+    this.config = {...this.config, ...this.configService.get()}
     this.configSubscription = this.configService.configUpdated.subscribe(()=>{
-      this.config = this.configService.get()
+      this.config = {...this.config, ...this.configService.get()}
     })
 
   }

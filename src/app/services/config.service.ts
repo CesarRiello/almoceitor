@@ -54,7 +54,7 @@ export class ConfigService {
   }
 
   get(){
-    return this.configStorage.get(key) || {}
+    return this.configStorage.get(key)
   }
 
 }
